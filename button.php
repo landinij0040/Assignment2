@@ -63,7 +63,8 @@
         if(array_key_exists('sign_out', $_POST)){
             $_SESSION['is_signed_in'] = False;
             $_SESSION['is_admin'] = False;
+            $_SESSION['current_user'] = "";
         }
-        
+
     }
 

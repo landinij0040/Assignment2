@@ -42,6 +42,8 @@ function user_exists($user,$password){
                 $_SESSION['conn']->query("UPDATE user SET lastlogin=CURRENT_TIMESTAMP WHERE username='$row[0]' ");
                 // Setting admin to true if true
                 $_SESSION['is_admin'] = $row[6];
+                // Putting the capturing te username
+                $_SESSION['current_user'] = $row[0];
             }
             else{
                 echo "Password is not correct";
@@ -53,32 +55,41 @@ function user_exists($user,$password){
     }
 }
 
+
+function show_user(){
+    $current_user =  $_SESSION['current_user'];
+    $query = "SELECT * FROM user WHERE username= '$current_user' ";
+    $result = $_SESSION['conn']->query($query);
+    $rows = $result->fetch_row();
+
+    echo "<h2>Hello $rows[0]!</h2><br/>";
+    echo "Username: $rows[0]<br/>";
+    echo "Password: $rows[1] <br/>";
+    echo "Firstname: $rows[2]<br/>";
+    echo "Lastname: $rows[3] <br/>";
+    echo "Created: $rows[4] <br/>";
+    echo "LastLogin: $rows[5]<br/>";
+    echo "Admin: $rows[6]";
+
+}
+
 function show_users()
 {
     $query = "SELECT * FROM user";
     $result = $_SESSION['conn']->query($query);
-    echo "<table>";
-    echo "<tr>
-                  <th>Username</th>
-                  <th>Password</th>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Created</th>
-                  <th>LastLogin</th>
-                  <th>Admin</th>
-             </tr>";
+
+    echo "<h1>Users</h1>";
+
     while ($rows = $result->fetch_row()) {
-        echo "<tr>
-                     <td>" . $rows[0] . "</td>
-                     <td>" . $rows[1] . "</td>
-                     <td>" . $rows[2] . "</td>
-                     <td>" . $rows[3] . "</td>
-                     <td>" . $rows[4] . "</td>
-                     <td>" . $rows[5] . "</td>
-                     <td>" . $rows[6] . "</td>   
-                 </tr>";
+        echo "<h2>$rows[0]!</h2><br/>";
+        echo "Username: $rows[0]<br/>";
+        echo "Password: $rows[1] <br/>";
+        echo "Firstname: $rows[2]<br/>";
+        echo "Lastname: $rows[3] <br/>";
+        echo "Created: $rows[4] <br/>";
+        echo "LastLogin: $rows[5]<br/>";
+        echo "Admin: $rows[6]";
     }
-    echo "</table>";
 }
 
 

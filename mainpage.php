@@ -19,12 +19,14 @@
 
     // Seeing if the user is signed in
     $signed_in_text = "";
-    if ($_SESSION['is_signed_in']){
+    if ($_SESSION['is_signed_in']) {
         $signed_in_text = "";
-    }elseif($_SESSION['is_admin']){
-        $signed_in_text = 'admin';
     }else{
         $signed_in_text = "not";
+    }
+
+    if($_SESSION['is_admin']){
+        $signed_in_text = 'admin';
     }
 
     // Echoing the contents of the mainpage.php

@@ -15,7 +15,7 @@ button_on_click();
 if (!$_SESSION['is_signed_in']){
     echo '<h1>You must be logged in to access this page</h1>';
 }else{
-    echo "<h1>Hello User</h1>";
+    show_user();
 }
 
 show_button();
