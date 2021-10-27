@@ -6,13 +6,16 @@ include_once 'button.php';
 // say must be logged in to accesses this page
 // Users and admin can see
 
+
+//session_start();
 exist_signed_in();
 button_on_click();
 
-if (!$GLOBALS['is_signed_in']){
-    echo 'You must be logged in to access this page';
+
+if (!$_SESSION['is_signed_in']){
+    echo '<h1>You must be logged in to access this page</h1>';
 }else{
-    echo "Hello User";
+    echo "<h1>Hello User</h1>";
 }
 
 show_button();

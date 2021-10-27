@@ -1,8 +1,6 @@
 <?php
     include_once 'data_base_connect.php';
-    // have sign out button of user is signed in
-    // Only admin can be accessed here
-    //      Say like only admins can access this page
+    include_once 'button.php';
     // make form for
     //      new user
     //      New password
@@ -14,6 +12,12 @@
     //      password verify
     //      salting
     //      password_hash(antirainbow.$password, PASSWORD_DEFAULT)
+    if (!$_SESSION['is_signed_in']){
+        echo '<h1>You must be an admin to acces this page</h1>';
+    }else{
+        show_users();
 
+    }
+    show_button();
 
 ?>
