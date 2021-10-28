@@ -81,7 +81,7 @@ function show_users()
     echo "<h1>Users</h1>";
 
     while ($rows = $result->fetch_row()) {
-        echo "<h2>$rows[0]!</h2><br/>";
+        echo "<h2>$rows[0]</h2><br/>";
         echo "Username: $rows[0]<br/>";
         echo "Password: $rows[1] <br/>";
         echo "Firstname: $rows[2]<br/>";
